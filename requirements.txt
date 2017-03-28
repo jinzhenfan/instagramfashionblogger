@@ -7,5 +7,5 @@ oauthlib==0.7.2
 requests>=2.2.1
 simplejson==3.8.0
 gensim==0.13.4.1
-pickle==2.0
+pickle==1.2
 pandas==0.18.1
