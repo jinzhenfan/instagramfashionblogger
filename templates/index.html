@@ -1,15 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Hello, World!</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<div>
-  			<h1>Hello, World!</h1>
-		</div>
-	</body>
+  <head>
+  <style>
+  #aligner{
+  text-align: center;
+  }
+  input { 
+  text-align: center; 
+  }
+
+  </style>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+          rel="stylesheet">
+  <script type=text/javascript>
+    $(function() {
+      $("button").click(function() {
+        $("#loader").text("Searching..."),
+        $("a").text(""),
+        $.getJSON('/_word_input', {
+          a: $('input[name="a"]').val()
+        }, function(data) {
+            $("#loader").text(""),
+            $.each(data, function(key,val){
+            $("a[id='blog"+key.toString() +"']").text(data[key]),
+            $("a[id='blog"+key.toString() +"']").attr('href', 'https://www.instagram.com/'+ data[key] +'/?hl=en')
+            });
+        });
+        return false;
+      });
+    });
+  </script>
+  </head>
+  <body>
+    <div class="container", id="aligner">
+      <div class="header">
+        <h1>Fashion Blogger Recommendation</h3>
+      </div>
+      <hr/>
+      <div>
+      <p>
+    <img src="https://rawgit.com/jinzhenfan/jinzhenfan.github.io/master/images/blogger/download_orig.jpg"  style="width:156px;height:156px;">
+
+    <h3 class="text-muted">Type in your Fashion Word</h3>
+    <input type="text" size="20" name="a"> 
+    <p>
+    <p><button>Recommend 3 fashion bloggers for me!</button>
+    <p><span id="loader"></span>
+    <a href="http://www.instagram.com/" id="blog0"></a>
+    <a href="http://www.instagram.com/" id="blog1"></a>
+    <a href="http://www.instagram.com/" id="blog2"></a>    
+      </form>
+      </div>
+    </div>
+  </body>
 </html>
