@@ -11,7 +11,7 @@ import gensim
 
 #word2vec, deeplearning model
 from gensim.models import word2vec
-import logging
+#import logging
 import re
 #logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 #sentences = word2vec.Text8Corpus('text8')

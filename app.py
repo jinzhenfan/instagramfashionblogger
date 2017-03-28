@@ -21,7 +21,7 @@ from nltk.corpus import stopwords
 import gensim
 
 from gensim.models import Word2Vec
-import logging
+#import logging
 import re
 from gensim.parsing import PorterStemmer
 from StemmingHelper import StemmingHelper
