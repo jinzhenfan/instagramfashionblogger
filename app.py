@@ -8,6 +8,7 @@ popular fashion blogger to follow.
 """
 import sys
 sys.path.append("E:\Program_Files\incubator\challenge\fashionblogger")
+sys.path.append("./nltk_data/")
 from flask import Flask
 from flask import request
 from flask import render_template
