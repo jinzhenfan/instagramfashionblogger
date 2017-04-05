@@ -7,7 +7,7 @@ Input your favorite brand name, occasions, or styles, and we will recommend best
 popular fashion blogger to follow.
 """
 import sys
-sys.path.append("E:\Program_Files\incubator\challenge\fashionblogger")
+#sys.path.append("E:\Program_Files\incubator\challenge\fashionblogger")
 #sys.path.append("./nltk_data/")
 from flask import Flask
 from flask import request
@@ -28,8 +28,23 @@ from gensim.parsing import PorterStemmer
 from StemmingHelper import StemmingHelper
 import pickle
 import pandas as pd
-
 from flask import Flask, render_template, request, jsonify
+"""
+from flask import redirect
+
+from bokeh.io import push_notebook, show, output_notebook
+
+from bokeh.layouts import row
+
+from bokeh.plotting import figure
+
+from bokeh.embed import components
+
+from bokeh.util.string import encode_utf8
+
+import quandl
+quandl.ApiConfig.api_key = 'Bc6FchAnNSq7zxfjpZGR'
+"""
 #http://code.runnable.com/UiPhLHanceFYAAAP/how-to-perform-ajax-in-flask-for-python
 # Initialize the Flask application
 
@@ -116,7 +131,19 @@ def word_input():
     print top3list
     #return jsonify([a,'zjerrr','sherrywind'])
     return jsonify(top3list)
-
+"""
+@app.route('/graph',methods = ['POST', 'GET'])
+def graph():
+    data = quandl.get_table('WIKI/PRICES', ticker = 'GOOG')          
+    #output_notebook()
+         
+    p=figure(title=a, plot_height=300, plot_width=600,x_axis_label='date',x_axis_type='datetime')
+    r=p.line(data.tail(30).date,data.tail(30).close,color="#2222aa",line_width=3)
+    #html = file_html(p, CDN, "my plot")
+    script,div=components(p)
+    html = render_template('graph.html',script=script, div=div)
+    return encode_utf8(html) #render_template('index.html')
+"""
 
 if __name__ == '__main__':
     app.run(

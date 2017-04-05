@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 import requests
 import dill
 
-Google_page_num=2
+Google_page_num=50
 
 #url selector for each selected css block
 def get_link(blk):
@@ -33,6 +33,7 @@ def get_links(page):
 # get instagram account names of popular fashion bloggers in search result
 def get_id(google_link):
     id_set=[]
+    print google_link
     try:
         review_page = requests.get(google_link)
         soup = BeautifulSoup(review_page.text,"lxml")
@@ -43,10 +44,11 @@ def get_id(google_link):
             if len(tag)<=30 and re.match('^@+[A-Za-z0-9_.]+$', tag)!=None:
                 #if str(tag) not in bloggerList:
                     #print(tag);
-                id_set.append(tag);
+                id_set.append(tag)
         return id_set
     except urllib2.HTTPError:
-        flag=1;
+        flag=1
+        return id_set
   
 
 #send request for google search result

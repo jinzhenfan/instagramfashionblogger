@@ -14,22 +14,44 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
           rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.2.min.css" type="text/css" />
+    <link href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.2.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.2.min.js"></script>
+    <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.2.min.js"></script>
+
   <script type=text/javascript>
     $(function() {
       $("button").click(function() {
         $("#loader").text("Searching..."),
+        $("a").attr('class', ""),        
         $("a").text(""),
         $.getJSON('/_word_input', {
           a: $('input[name="a"]').val()
         }, function(data) {
             $("#loader").text(""),
             $.each(data, function(key,val){
-            $("a[id='blog"+key.toString() +"']").text(data[key]),
-            $("a[id='blog"+key.toString() +"']").attr('href', 'https://www.instagram.com/'+ data[key] +'/?hl=en')
-            });
-        });
+            $("a[id='blog"+key.toString() +"']").text(data[key]+"»"),
+            $("a[id='blog"+key.toString() +"']").attr('href', 'https://www.instagram.com/'+ data[key] +'/?hl=en'),
+            $("a[id='blog"+key.toString() +"']").attr('class', "btn btn-success")    
+            
+            }),
+            $("a[id='pro']").text(' Good Job!'),
+            $("a[id='con']").text(' Not really my style...'),
+            $("a[id='more']").text('I want to see more analysis »'),
+             
+            $("a[id='pro']").append("<img src='http://emojipedia-us.s3.amazonaws.com/cache/9c/47/9c477f385239e94fc8a99d35097d6dde.png' class='pull-left' height='20' width='20'/>"),
+            $("a[id='con']").append("<img src='http://emojipedia-us.s3.amazonaws.com/cache/f8/c4/f8c4823f400a71475141f39eb6a85eef.png' class='pull-left' height='20' width='20'/>"),
+            $("a[id='more']").attr('href', '/graph'),
+
+            $("a[id='pro']").attr('class', "btn btn-default"),             
+            $("a[id='con']").attr('class', "btn btn-default"),
+            $("a[id='more']").attr('class', "btn btn-warning") 
+        })
+        ;
         return false;
       });
+
+    
     });
   </script>
   </head>
@@ -40,19 +62,24 @@
       </div>
       <hr/>
       <div>
-      <p>
-    <img src="https://rawgit.com/jinzhenfan/jinzhenfan.github.io/master/images/blogger/download_orig.jpg"  style="width:156px;height:156px;">
+     <img src="https://rawgit.com/jinzhenfan/jinzhenfan.github.io/master/images/blogger/download_orig.jpg"  style="width:156px;height:156px;">
 
     <h3 class="text-muted">Type in your Fashion Word</h3>
     <input type="text" size="20" name="a"> 
-    <p>
-    <p><button>Recommend 3 fashion bloggers for me!</button>
+    <p><span style="display:block; height: 50px;"></span>
+    <p><button type="button" class="btn btn-info" >Recommend 3 fashion bloggers for me!</button>
+    <p><span style="display:block; height: 50px;"></span>
     <p><span id="loader"></span>
-    <a href="http://www.instagram.com/" id="blog0"></a>
-    <a href="http://www.instagram.com/" id="blog1"></a>
-    <a href="http://www.instagram.com/" id="blog2"></a>    
-      </form>
+    <a href="http://www.instagram.com/" id="blog0" target="_blank"></a>
+    <a href="http://www.instagram.com/" id="blog1" target="_blank"></a>
+    <a href="http://www.instagram.com/" id="blog2" target="_blank"></a>
+    
+        <p><a id="pro"  ></a>
+        <a id="con"  ></a>
+        <a id="more" ></a>
+
       </div>
     </div>
+
   </body>
 </html>
