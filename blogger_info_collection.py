@@ -16,7 +16,7 @@ sys.path.append("E:\Program_Files\incubator\challenge\fashionblogger")
 df=pd.read_csv('bloggerList.csv',sep=',',header=None)
 flag=0;
 account_list=[];
-with open('Follower_Posts_Nums_Comments_Likes_1.csv', 'w') as f:
+with open('Follower_Posts_Nums_Comments_Likes_2.csv', 'w') as f:
     for i in range(len(df.index)):
         #For each popular fashion blogger
         #Find the account id

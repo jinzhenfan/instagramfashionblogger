@@ -18,7 +18,7 @@ import string
 #Read in the url lists scrapped from google search results "instagram fashion blogger"
 sys.path.append("E:\Program_Files\incubator\challenge\fashionblogger")
 #df=pd.read_csv('googlesearchlinks.csv',sep='\t',header=0)
-df=pd.read_csv('bloggerList_post.csv',sep=',',header=None)
+df=pd.read_csv('bloggerList.csv',sep=',',header=None)
 flag=0;
 account_list=[];
 account_name=[]
