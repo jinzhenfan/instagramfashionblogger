@@ -11,20 +11,13 @@
 
   </style>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
-          rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.2.min.css" type="text/css" />
-    <link href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.2.min.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.2.min.js"></script>
-    <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.2.min.js"></script>
 
-  <script type=text/javascript>
+   <script type=text/javascript>
     $(function() {
       $("button").click(function() {
         $("#loader").text("Searching..."),
-        $("a").attr('class', ""),        
-        $("a").text(""),
+           
+        
         $.getJSON('/_word_input', {
           a: $('input[name="a"]').val()
         }, function(data) {
@@ -56,6 +49,54 @@
   </script>
   </head>
   <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.2.min.css" type="text/css" />
+    <link href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.2.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.2.min.js"></script>
+    <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.2.min.js"></script>
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+          <a class="navbar-brand" href="#"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="./">Home</a></li>
+            
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Explore Datasets <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="./datasets">Blogger Impact</a></li>
+                <li><a href="./hist">NLP</a></li>
+              </ul>
+            </li>
+
+            <li><a href="./model">Deep Learning</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"> More options <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Browse by brand</a></li>
+                <li><a href="#">Keyword Search</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+      
+    
     <div class="container", id="aligner">
       <div class="header">
         <h1>Fashion Blogger Recommendation</h3>
@@ -66,17 +107,19 @@
 
     <h3 class="text-muted">Type in your Fashion Word</h3>
     <input type="text" size="20" name="a"> 
-    <p><span style="display:block; height: 50px;"></span>
+    <p><span style="display:block; height: 20px;"></span>
     <p><button type="button" class="btn btn-info" >Recommend 3 fashion bloggers for me!</button>
-    <p><span style="display:block; height: 50px;"></span>
-    <p><span id="loader"></span>
-    <a href="http://www.instagram.com/" id="blog0" target="_blank"></a>
-    <a href="http://www.instagram.com/" id="blog1" target="_blank"></a>
-    <a href="http://www.instagram.com/" id="blog2" target="_blank"></a>
+    <p><span style="display:block; height: 10px;"></span>
+    <p><span id="loader" style="display:block; height: 20px;"> </span> 
+    <p><span style="display:block; height: 10px;"></span>
+    <p>
+    <a href="http://www.instagram.com/" class='refresh' id="blog0" target="_blank"></a>
+    <a href="http://www.instagram.com/" class='refresh' id="blog1" target="_blank"></a>
+    <a href="http://www.instagram.com/" class='refresh' id="blog2" target="_blank"></a></p>
     
-        <p><a id="pro"  ></a>
-        <a id="con"  ></a>
-        <a id="more" ></a>
+        <p><a class="refresh" id="pro"  ></a>
+        <a class="refresh" id="con"  ></a>
+        <a class="refresh" id="more" ></a></p>
 
       </div>
     </div>

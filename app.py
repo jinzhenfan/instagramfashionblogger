@@ -20,6 +20,7 @@ from nltk.corpus import stopwords
 #from nltk.corpus import webtext
 #from nltk.metrics import BigramAssocMeasures, spearman_correlation, ranks_from_scores
 import gensim
+import time
 
 from gensim.models import Word2Vec
 #import logging
@@ -29,6 +30,9 @@ from StemmingHelper import StemmingHelper
 import pickle
 import pandas as pd
 from flask import Flask, render_template, request, jsonify
+import os.path
+
+
 """
 from flask import redirect
 
@@ -49,9 +53,11 @@ quandl.ApiConfig.api_key = 'Bc6FchAnNSq7zxfjpZGR'
 # Initialize the Flask application
 
 #account_name, fbt=fashion_blogger_tags.fashion_blogger_tags();
-
-with open('objs_words.pickle') as f:  # Python 3: open(..., 'rb')
-    account_name, fbt = pickle.load(f)
+    
+with open('objs_words_1325.pickle') as f:  # Python 3: open(..., 'wb')
+    #pickle.dump([account, follower_counts, posts_count, blogger_words],f)
+    [account_name, follower_countsALL, posts_countALL, fbt, icon] = pickle.load(f)
+ 
 # 12331 tags
 #25728 corpus
 #306659 words
@@ -62,7 +68,7 @@ with open('objs_words.pickle') as f:  # Python 3: open(..., 'rb')
 
 global_stemmer = PorterStemmer()
 ignored_words = stopwords.words('english')
-word_filter = lambda w: len(w) < 3 or w.lower() in ignored_words
+#word_filter = lambda w: len(w) < 3 or w.lower() in ignored_words
 my_corpus=[]
 regex = re.compile('[^a-zA-Z]+');
 
@@ -83,22 +89,27 @@ def query_word(query):
     #print ("Searching database...")
     #writing matching scores in to a csv file
     account_set=[]
-    with open('.\output\MatchScore'+query+'.csv', 'w') as f:
-        for i in range(len(fbt)):
-            if account_name[i] not in account_set: #duplciation check
-                tag_group=fbt[i];
-                blogger_score=[];
-                if len(tag_group)>20:
-                    for tag in tag_group:
-                        if len(tag)>1:#newly added 02/13/2017
+    file_path='./output/MatchScore'+query+'.csv'
+    if os.path.exists(file_path)== False: 
+        with open(file_path, 'w') as f:
+            for i in range(len(account_name)):
+                if account_name[i] not in account_set: #duplciation check
+                    tag_group=fbt[i];
+                    blogger_score=[];
+                    if len(tag_group)>20:
+                        for tag in tag_group:
+                            #if len(tag)>1:#newly added 02/13/2017
                             blogger_score=blogger_score+[MatchScore(tag,query)];
-                #if len(tag_group)>10: # scaling fact to correct bias for blogger vocabulary size
-                    blogger_sum=sum(blogger_score)/len(tag_group); # scaling fact to correct bias for blogger vocabulary size
-                #print account_name[i], blogger_sum;
-                f.writelines(account_name[i]+ ','+str(blogger_sum)+'\n');
-                account_set.append(account_name[i]);
+                    #if len(tag_group)>10: # scaling fact to correct bias for blogger vocabulary size
+                        blogger_sum=sum(blogger_score)/len(tag_group); # scaling fact to correct bias for blogger vocabulary size
+                    #print account_name[i], blogger_sum;
+                    else: blogger_sum=0
+                    f.writelines(account_name[i]+ ','+str(blogger_sum)+'\n');
+                    account_set.append(account_name[i])
+        f.close()
+    else: time.sleep(0.3)
     print ("Searching the database...:\n")
-    df = pd.read_csv('.\output\MatchScore'+query+'.csv', header=None)
+    df = pd.read_csv('./output/MatchScore'+query+'.csv', header=None)
     #get top 3 best match
     top3= df.sort_values(1,ascending=False).head(3)
     #print [top3.iloc[0,0][1:],top3.iloc[1,0][1:],top3.iloc[2,0][1:]]
@@ -120,6 +131,21 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/datasets')
+def datasests():
+    return render_template('Visual1.html')
+
+@app.route('/hist')
+def hist():
+    return render_template('Visual2.html')
+
+@app.route('/model')
+def model_exp():
+    return render_template('model_exp.html')
+
+@app.route('/cluster')
+def cluster():
+    return render_template('Visual3.html')
 # Route that will process the AJAX request, sum up two
 # integer numbers (defaulted to zero) and return the
 # result as a proper JSON response (Content-Type, etc.)

@@ -11,7 +11,7 @@ import numpy as np
 import sys
 import pandas as pd
 #Read in the url lists scrapped from google search results "instagram fashion blogger"
-sys.path.append("E:\Program_Files\incubator\challenge\fashionblogger")
+#sys.path.append("E:\Program_Files\incubator\challenge\fashionblogger")
 #df=pd.read_csv('googlesearchlinks.csv',sep='\t',header=0)
 df=pd.read_csv('bloggerList.csv',sep=',',header=None)
 flag=0;
@@ -25,6 +25,8 @@ with open('Follower_Posts_Nums_Comments_Likes_2.csv', 'w') as f:
         if account not in account_list:
             links='https://www.instagram.com/'+account[1:]+'/?hl=en';
             posts_count=0;
+            follower_counts='0'
+            icon_image=''
             try:
                 req = urllib2.Request(links);
                 req.add_unredirected_header('User-Agent', 'Custom User-Agent');
@@ -106,17 +108,20 @@ with open('Follower_Posts_Nums_Comments_Likes_2.csv', 'w') as f:
                                     else: likes.append(int(like_counts));
                     print('\n');
                 
-                    if comments!=[] and likes!=[]: # filter out private mode blogs
-                        f.writelines(account[1:]+','+ follower_counts +','+str(posts_count)+','+icon_image+','+
-                        str(np.max(comments))+','+str(np.min(comments))+','+str(np.mean(comments))+','+
-                        str(np.max(likes))+','+str(np.min(likes))+','+str(np.mean(likes))+'\n');
                 
                 
                 #f.writelines(account[1:]+','+ follower_counts +','+ posts_count +','+icon_image+','+'\n');
                 
             except urllib2.HTTPError:
                 flag=1;
-           
+                
+            if comments!=[] and likes!=[]: # filter out private mode blogs
+                f.writelines(account[1:]+','+ follower_counts +','+str(posts_count)+','+icon_image+','+
+                str(np.max(comments))+','+str(np.min(comments))+','+str(np.mean(comments))+','+
+                str(np.max(likes))+','+str(np.min(likes))+','+str(np.mean(likes))+'\n')
+            else: f.writelines(account[1:]+','+ follower_counts +','+str(posts_count)+','+icon_image+','+
+                '0'+','+'0'+','+'0'+','+'0'+','+'0'+','+'0'+'\n')
+         
 
 #Find title corpus, classification, and make recommendations, highcharts.
 

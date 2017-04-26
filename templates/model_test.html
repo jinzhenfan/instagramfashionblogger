@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+	<header>
+		<title>Fashion Blogger Distribution</title>
+	</header>
+	<body>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+              </button>
+              <a class="navbar-brand" href="#"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li ><a href="./">Home</a></li>
+                <li ><a href="/datasets">Explore Datasets</a></li>
+                <li class="active"><a href="/model">Deep Learning</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#"> More options <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Browse by brand</a></li>
+                    <li><a href="#">Keyword Search</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+    
+    
+		<div class="col-sm-10 col-sm-offset-1">
+			<h2>Influence of Instagram Fashion Bloggers</h2>
+			<p>This graph shows the number of followers and posts of sampled instagram fashion bloggers. You can mouse over the data points, zoom in and out to check out who they are. </p>
+			<div id="chart"><svg></svg></div>
+		</div>
+	</body>
+
+	<div>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js" charset="utf-8"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js"></script>
+		<script src="//d3js.org/d3.v3.js" charset="utf-8"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.js" charset="utf-8"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js" charset="utf-8"></script>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.css">
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.css">
+	</div>
+
+
+
+	<style>
+	#chart svg { width: 100%; height: 80%;}
+	</style>
+</html>
