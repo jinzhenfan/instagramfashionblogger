@@ -131,6 +131,11 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/analysis')
+def analysis():
+    return render_template('analysis.html')
+
+
 @app.route('/datasets')
 def datasests():
     return render_template('Visual1.html')
