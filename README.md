@@ -1,8 +1,7 @@
-#Instagram Fashion Blogger App on Heroku. 
 
 ## Recommendation system. Deep Learning.
 
-This is an Heroku app built on Flask. 
+This is an Instagram Fashion Blogger recommendation app built on deep learning and NLP. 
 
 The original idea is to make customized recommendations of Instagram fashion bloggers through natural language processing. Whenever the user type in one fashion keyword in his/her mind, such as "party", "paris", or "shoes", this app will search in the blogger posts database for the best matches.  
 
