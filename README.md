@@ -1,5 +1,5 @@
 
-## Recommendation system. Deep Learning.
+## Recommendation system based on deep Learning.
 
 This is an Instagram Fashion Blogger recommendation app built on deep learning and NLP. 
 
